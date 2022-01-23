@@ -15,7 +15,7 @@ def runFunc():
     print("__name__")
 
 def getRandomWord0(words):
-    num = random.randint(0,len(words))
+    num = random.randint(0,len(words)-1)
     return words[num]
 
 def getRandomWord():

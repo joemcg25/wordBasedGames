@@ -11,6 +11,8 @@ class basicHangman:
         self._difficultySet=False
         self._difficultyVal= "easy"
         self._difficulty={"easy":[10,5],"medium":[7,7],"hard":[5,12]}
+        self._commands=["start","restart","quit"]
+
     def handleGuess(self,input):
         if self.wordGuess(input,self._wordToBeGuessed):
             for i in input:
@@ -69,19 +71,19 @@ class basicHangman:
         while True:
             print(f"Provide input - Guess a letter, type quit to quit or restart to begin a new game")
             guess = input().lower()
-            if guess == "quit":
+            if (guess == "quit") or guess == "change difficulty":
                 return "quit"
             if guess == "restart":
                 break
             self.handleGuess(guess)
-            if (self._noGuesses==0):
+            if (self.wordGuess(self._wordToBeGuessed, self._stateOfGuess)):
+                print("You got the word")
+                print(f"Final State\n {self.showStateOfWorld()}")
+                break
+            elif (self._noGuesses==0):
                 print(f"You did not get the word")
                 print(f"Final State\n {self.showStateOfWorld()}")
                 print(f"The word was - {self._wordToBeGuessed}")
-                break
-            elif(self.wordGuess(self._wordToBeGuessed,self._stateOfGuess)):
-                print("You got the word")
-                print(f"Final State\n {self.showStateOfWorld()}")
                 break
             print(f"{self.showStateOfWorld()}")
         return "OK"
