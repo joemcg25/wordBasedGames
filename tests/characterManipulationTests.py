@@ -3,12 +3,10 @@ from src.characterManipulation import readFile
 import unittest
 
 class TestReturnLengthWord(unittest.TestCase):
-    def test_lengthOfSix(self):
-        item=readFile.returnLengthWord(6)
-        self.assertEqual(6,len(item))
-    def test_lengthOfSeven(self):
-        item=readFile.returnLengthWord(7)
-        self.assertEqual(7,len(item))
+    def test_lengthOf(self):
+        for i in range(2,10):
+            item=readFile.returnLengthWord(i)
+            self.assertEqual(i,len(item))
 
 class TestRandomWord(unittest.TestCase):
     def test_randomWord(self):
@@ -34,6 +32,30 @@ class TestToWord(unittest.TestCase):
     def test_genWord(self):
         item = readFile.toWord(["T","o","L","i","s","t"])
         self.assertEqual(item,"ToList")
+
+class TestAlterWord(unittest.TestCase):
+    def test_genWord(self):
+        item = readFile.alterWord("toChange",3,"A")
+        self.assertEqual(item,"toCAange")
+
+class TestGetIndexes(unittest.TestCase):
+    def test_genWord0(self):
+        item = readFile.getIndexes("This This This ","T")
+        self.assertEqual(item,[0,5,10])
+    def test_genWord1(self):
+        item = readFile.getIndexes("This This This ","Z")
+        self.assertEqual(item,[])
+    def test_genWord2(self):
+        item = readFile.getIndexes("This This This Love","L")
+        self.assertEqual(item,[15])
+
+class TestPrintBlanks(unittest.TestCase):
+    def test_genWord0(self):
+        item = readFile.printBlanks(0)
+        self.assertEqual(item,"")
+    def test_genWord1(self):
+        item = readFile.printBlanks(4)
+        self.assertEqual(item,"____")
 
 def runUnitTests():
     print(__name__)
