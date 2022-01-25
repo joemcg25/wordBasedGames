@@ -5,6 +5,8 @@ if os.listdir('.').__contains__("ukenglish.txt"):
 else:
     fileName = open("src/ukenglish.txt", mode="r")
 file = fileName.readlines()
+fileName.close()
+
 for i,j in enumerate(file):
     file[i]=j.removesuffix("\n")
 wordLengths=[]

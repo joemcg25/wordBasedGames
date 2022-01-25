@@ -13,6 +13,7 @@ class basicHangman:
         self._difficulty={"easy":[10,5],"medium":[7,7],"hard":[5,12]}
         self._commands=["start","restart","quit"]
 
+    ## Methods ##
     def handleGuess(self,input):
         if self.wordGuess(input,self._wordToBeGuessed):
             for i in input:
@@ -43,6 +44,9 @@ class basicHangman:
         self._wordToBeGuessed = readFile.returnLengthWords(0, self._difficulty[level][1])
     def printDifficulty(self):
         print(f"Please provide one of {[i for i in self._difficulty.keys()]}")
+    def flipSetDifficulty(self,option):
+        self._difficultySet=option
+
     def userSetDifficulty(self):
         self.printDifficulty()
         while True:
@@ -52,7 +56,7 @@ class basicHangman:
             else:
                 self.setDifficulty(level)
                 break
-        self._difficultySet=True
+        self.flipSetDifficulty(True)
         self._difficultyVal=level
         print(f"Difficulty has been set to {level}")
     def initGame(self):
@@ -101,6 +105,7 @@ class basicHangman:
                 self.userSetDifficulty()
         return True
 
+## Free function ##
 def goodGuess(wordToBeGuessed,currentGuess,guess):
     indexList= readFile.getIndexes(wordToBeGuessed, guess)
     for i in indexList:

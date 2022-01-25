@@ -4,9 +4,8 @@ import unittest
 
 class TestReturnLengthWord(unittest.TestCase):
     def test_lengthOf(self):
-        for i in range(2,10):
-            item=readFile.returnLengthWord(i)
-            self.assertEqual(i,len(item))
+        item=readFile.returnLengthWord(6)
+        self.assertEqual(6,len(item))
 
 class TestRandomWord(unittest.TestCase):
     def test_randomWord(self):
