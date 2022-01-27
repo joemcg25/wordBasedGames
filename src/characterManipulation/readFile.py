@@ -12,7 +12,7 @@ for i,j in enumerate(file):
 wordLengths=[]
 for word in file:
     wordLengths.append(len(word))
-
+validGuesses="abcdefghijklmnopqrstuvwxyz"
 def runFunc():
     print("__name__")
 
@@ -73,6 +73,8 @@ def printBlanks(wordLength):
 
 def validWordGuess(guess):
     guess=guess.lower()
+    if not validGuesses.__contains__(guess):
+        return False
     for i in file:
         if guess==i:
             return True

@@ -49,12 +49,46 @@ class TestGetIndexes(unittest.TestCase):
         self.assertEqual(item,[15])
 
 class TestPrintBlanks(unittest.TestCase):
-    def test_genWord0(self):
+    def test_printBlanks0(self):
         item = readFile.printBlanks(0)
         self.assertEqual(item,"")
-    def test_genWord1(self):
+    def test_printBlanks1(self):
         item = readFile.printBlanks(4)
         self.assertEqual(item,"____")
+
+class TestValidGuess(unittest.TestCase):
+    def test_validGuess0(self):
+        item = readFile.validWordGuess("a")
+        self.assertTrue(item)
+    def test_validGuess1(self):
+        item = readFile.validWordGuess("4")
+        self.assertFalse(item)
+
+class TestReturnLengthWord(unittest.TestCase):
+    def test_returnLengthWords0(self):
+        item = readFile.returnLengthWord(4)
+        self.assertEqual(len(item),4)
+    def test_returnLengthWords1(self):
+        item = readFile.returnLengthWord(8)
+        self.assertEqual(len(item),8)
+
+class TestReturnLengthWords(unittest.TestCase):
+    def test_returnLengthWords0(self):
+        item = readFile.returnLengthWords(2,4)
+        self.assertTrue(len(item)<=4)
+    def test_returnLengthWords1(self):
+        item = readFile.returnLengthWords(5,8)
+        self.assertTrue(len(item)<=8)
+
+class TestGetIndexes(unittest.TestCase):
+    def test_getIndexes0(self):
+        item = readFile.getIndexes("test","t")
+        self.assertEqual(item,[0,3])
+    def test_getIndexes1(self):
+        item = readFile.getIndexes("test","q")
+        self.assertEqual(item,[])
+
+
 
 def runUnitTests():
     print(__name__)
