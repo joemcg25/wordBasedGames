@@ -12,6 +12,7 @@ class basicHangman:
         self._difficultyVal= "easy"
         self._difficulty={"easy":[10,5],"medium":[7,7],"hard":[5,12]}
         self._commands=["start","restart","quit"]
+        self._input="Please provide input: "
 
     ## Methods ##
     def handleGuess(self,input):
@@ -50,7 +51,7 @@ class basicHangman:
     def userSetDifficulty(self):
         self.printDifficulty()
         while True:
-            level = input()
+            level = input(self._input)
             if not level in self._difficulty.keys():
                 self.printDifficulty()
             else:
@@ -74,7 +75,7 @@ class basicHangman:
         self.initGame()
         while True:
             print(f"Provide input - Guess a letter, type quit to quit or restart to begin a new game")
-            guess = input().lower()
+            guess = input(self._input).lower()
             if (guess == "quit") or guess == "change difficulty":
                 return "quit"
             if guess == "restart":
@@ -95,13 +96,14 @@ class basicHangman:
         showInit=True
         while True:
             self.inputCommands()
-            userInput = input().lower()
+            userInput = input(self._input).lower()
             if userInput=="quit":
                 break
             elif userInput=="restart" or userInput == "start":
                 if "quit"==self.runGame():
                     break
             elif userInput=="change difficulty":
+                self.flipSetDifficulty(False)
                 self.userSetDifficulty()
         return True
 
