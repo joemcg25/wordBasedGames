@@ -1,6 +1,5 @@
-#TODO Get running with python -m unittest
-from src.characterManipulation import readFile
 import unittest
+from src.characterManipulation import readFile
 
 class TestReturnLengthWord(unittest.TestCase):
     def test_lengthOf(self):

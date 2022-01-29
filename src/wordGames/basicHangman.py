@@ -1,6 +1,7 @@
-from characterManipulation import readFile
-# TODO make Hangman object
+import sys,os
+sys.path.append(os.getenv("PROJECTROOT")+"\\src")
 
+from characterManipulation import readFile
 class basicHangman:
     def __init__(self):
         self._noGuesses=0

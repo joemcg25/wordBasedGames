@@ -1,9 +1,5 @@
-import sys
 import unittest
-sys.path.append("..\\src")
 from src.wordGames import basicHangman
-
-#Look to add creating a basicHangman class as part of a set-up
 
 class TestBasicHangman(unittest.TestCase):
     def setUp(self) -> None: # Called before every test
@@ -21,6 +17,10 @@ class TestBasicHangman(unittest.TestCase):
     def test_initGameEasy(self):
         self.assertEqual(self.hangman._noGuesses,10)
     def test_initGameMedium(self):
+        self.hangman._difficultyVal="medium"
+        self.hangman.initGame()
+        self.assertEqual(self.hangman._noGuesses,7)
+    def test_makeGuess(self):
         self.hangman._difficultyVal="medium"
         self.hangman.initGame()
         self.assertEqual(self.hangman._noGuesses,7)

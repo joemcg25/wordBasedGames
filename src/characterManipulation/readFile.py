@@ -1,18 +1,16 @@
-import random,os
-
-if os.listdir('.').__contains__("ukenglish.txt"):
-    fileName = open("ukenglish.txt", mode="r")
-else:
-    fileName = open("src/ukenglish.txt", mode="r")
+import os,sys,random
+sys.path.append(os.getenv("PROJECTROOT")+"\\src")
+fileName = open(os.getenv("PROJECTROOT")+"\\src\\ukenglish.txt", mode="r")
 file = fileName.readlines()
 fileName.close()
-
 for i,j in enumerate(file):
     file[i]=j.removesuffix("\n")
 wordLengths=[]
 for word in file:
     wordLengths.append(len(word))
+
 validGuesses="abcdefghijklmnopqrstuvwxyz"
+
 def runFunc():
     print("__name__")
 
