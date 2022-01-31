@@ -57,10 +57,16 @@ class TestPrintBlanks(unittest.TestCase):
 
 class TestValidGuess(unittest.TestCase):
     def test_validGuess0(self):
-        item = readFile.validWordGuess("a")
+        item = readFile.validLetterGuess("a")
         self.assertTrue(item)
     def test_validGuess1(self):
-        item = readFile.validWordGuess("4")
+        item = readFile.validLetterGuess("4")
+        self.assertFalse(item)
+    def test_validWordGuess0(self):
+        item = readFile.validWordGuess("word")
+        self.assertTrue(item)
+    def test_validWordGuess1(self):
+        item = readFile.validWordGuess("notQWord")
         self.assertFalse(item)
 
 class TestReturnLengthWord(unittest.TestCase):

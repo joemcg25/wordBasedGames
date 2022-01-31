@@ -1,4 +1,5 @@
 from wordGames import basicHangman,wordle
+#TODO Break-down of game is make guess->handle guess->continue/end game
 
 def runHangman():
     newHangman = basicHangman.basicHangman()

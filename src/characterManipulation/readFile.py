@@ -69,10 +69,13 @@ def returnLengthWords(wordLengthMin,wordLengthMax):
 def printBlanks(wordLength):
     return "_" * wordLength
 
-def validWordGuess(guess):
-    guess=guess.lower()
+def validLetterGuess(guess):
     if not validGuesses.__contains__(guess):
         return False
+    return True
+
+def validWordGuess(guess):
+    guess=guess.lower()
     for i in file:
         if guess==i:
             return True
