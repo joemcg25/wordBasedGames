@@ -17,19 +17,25 @@ class basicHangman:
 
     ## Methods ##
     def handleGuess(self,input):
-        if self.wordGuess(input,self._wordToBeGuessed):
-            for i in input:
-                self._guesses.append(i)
-                self.letterGuess(i)
+        if readFile.validLetterGuess(input):
+            self._guesses.append(input)
+            self.letterGuess(input)
             return True
+        if len(input)>1:
+            if not self._guesses.__contains__(input):
+                self._noGuesses -= 1
+                self._guesses.append(input)
+            if self.wordGuess(input,self._wordToBeGuessed):
+                for i in input:
+                    self._guesses.append(i)
+                    self.letterGuess(i)
+                return True
         if (input in self._guesses)or(self._noGuesses<1):
             return False
-        self._guesses.append(input)
-        self.letterGuess(input)
-        return True
+        return False
     def letterGuess(self,input):
         if self._wordToBeGuessed.__contains__(input):
-            self._stateOfGuess=goodGuess(self._wordToBeGuessed,self._stateOfGuess,input)
+            self._stateOfGuess=self.goodGuess(self._wordToBeGuessed,self._stateOfGuess,input)
             return True
         self._noGuesses -= 1
         return False
@@ -37,6 +43,11 @@ class basicHangman:
         if input==match:
             return True
         return False
+    def goodGuess(self,wordToBeGuessed, currentGuess, guess):
+        indexList = readFile.getIndexes(wordToBeGuessed, guess)
+        for i in indexList:
+            currentGuess = readFile.alterWord(currentGuess, i, guess)
+        return currentGuess
     def showGuesses(self):
         return self._guesses
     def showStateOfWorld(self):
@@ -48,7 +59,6 @@ class basicHangman:
         print(f"Please provide one of {[i for i in self._difficulty.keys()]}")
     def flipSetDifficulty(self,option):
         self._difficultySet=option
-
     def userSetDifficulty(self):
         self.printDifficulty()
         while True:
@@ -108,10 +118,5 @@ class basicHangman:
                 self.userSetDifficulty()
         return True
 
-## Free function ##
-def goodGuess(wordToBeGuessed,currentGuess,guess):
-    indexList= readFile.getIndexes(wordToBeGuessed, guess)
-    for i in indexList:
-        currentGuess= readFile.alterWord(currentGuess, i, guess)
-    return currentGuess
+
 
