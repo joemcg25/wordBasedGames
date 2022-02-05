@@ -12,6 +12,7 @@ class wordleClass:
         self.activeIndex=0
         self.wordLength=5
         self.guessState = readFile.printBlanks(self.wordLength)
+        self.lettersInWord = []
 
     def genWords(self):
         self.activeIndex = 0

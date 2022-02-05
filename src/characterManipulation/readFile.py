@@ -80,3 +80,16 @@ def validWordGuess(guess):
         if guess==i:
             return True
     return False
+
+def checkLetters(word, input):
+    inWord=[]
+    for i in input:
+        if word.__contains__(i) and not i in inWord:
+            inWord.append(i)
+    return inWord
+
+def goodGuess(wordToBeGuessed, currentGuess, guess):
+    indexList = getIndexes(wordToBeGuessed, guess)
+    for i in indexList:
+        currentGuess = alterWord(currentGuess, i, guess)
+    return currentGuess

@@ -35,7 +35,7 @@ class basicHangman:
         return False
     def letterGuess(self,input):
         if self._wordToBeGuessed.__contains__(input):
-            self._stateOfGuess=self.goodGuess(self._wordToBeGuessed,self._stateOfGuess,input)
+            self._stateOfGuess=readFile.goodGuess(self._wordToBeGuessed,self._stateOfGuess,input)
             return True
         self._noGuesses -= 1
         return False
@@ -43,11 +43,6 @@ class basicHangman:
         if input==match:
             return True
         return False
-    def goodGuess(self,wordToBeGuessed, currentGuess, guess):
-        indexList = readFile.getIndexes(wordToBeGuessed, guess)
-        for i in indexList:
-            currentGuess = readFile.alterWord(currentGuess, i, guess)
-        return currentGuess
     def showGuesses(self):
         return self._guesses
     def showStateOfWorld(self):

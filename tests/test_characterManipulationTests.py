@@ -93,7 +93,30 @@ class TestGetIndexes(unittest.TestCase):
         item = readFile.getIndexes("test","q")
         self.assertEqual(item,[])
 
+class TestCheckLetters(unittest.TestCase):
+    def test_checkLetters0(self):
+        item = readFile.checkLetters("test","t")
+        self.assertEqual(item,["t"])
+    def test_checkLetters1(self):
+        item = readFile.checkLetters("test","q")
+        self.assertEqual(item,[])
+    def test_checkLetters2(self):
+        item = readFile.checkLetters("flash","fla")
+        self.assertEqual(item,["f","l","a"])
 
+class TestGoodGuess(unittest.TestCase):
+    def test_goodGuess0(self):
+        item=readFile.goodGuess("butter","______","t")
+        self.assertEqual(item,"__tt__")
+    def test_goodGuess1(self):
+        item=readFile.goodGuess("butter","______","t")
+        item = readFile.goodGuess("butter", item, "b")
+        self.assertEqual(item,"b_tt__")
+    def test_goodGuess2(self):
+        item=readFile.goodGuess("butter","______","t")
+        item = readFile.goodGuess("butter", item, "b")
+        item = readFile.goodGuess("butter", item, "q")
+        self.assertEqual(item,"b_tt__")
 
 def runUnitTests():
     print(__name__)
