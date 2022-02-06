@@ -17,6 +17,8 @@ class basicHangman:
 
     ## Methods ##
     def handleGuess(self,input):
+        if (input in self._guesses)or(self._noGuesses<1):
+            return False
         if readFile.validLetterGuess(input):
             self._guesses.append(input)
             self.letterGuess(input)
@@ -30,8 +32,6 @@ class basicHangman:
                     self._guesses.append(i)
                     self.letterGuess(i)
                 return True
-        if (input in self._guesses)or(self._noGuesses<1):
-            return False
         return False
     def letterGuess(self,input):
         if self._wordToBeGuessed.__contains__(input):
@@ -57,7 +57,7 @@ class basicHangman:
     def userSetDifficulty(self):
         self.printDifficulty()
         while True:
-            level = input(self._input)
+            level = input(self._input).lower().lstrip(" ").rstrip(" ")
             if not level in self._difficulty.keys():
                 self.printDifficulty()
             else:
@@ -81,9 +81,9 @@ class basicHangman:
         self.initGame()
         while True:
             print(f"Provide input - Guess a letter, type quit to quit or restart to begin a new game")
-            guess = input(self._input).lower()
+            guess = input(self._input).lower().lstrip(" ").rstrip(" ")
             if (guess == "quit") or guess == "change difficulty":
-                return "quit"
+                return guess
             if guess == "restart":
                 break
             self.handleGuess(guess)
@@ -102,12 +102,16 @@ class basicHangman:
         showInit=True
         while True:
             self.inputCommands()
-            userInput = input(self._input).lower()
+            userInput = input(self._input).lower().lstrip(" ").rstrip(" ")
             if userInput=="quit":
                 break
             elif userInput=="restart" or userInput == "start":
-                if "quit"==self.runGame():
+                runningGame=self.runGame()
+                if "quit"==runningGame:
                     break
+                elif "change difficulty"==runningGame:
+                    self.flipSetDifficulty(False)
+                    self.userSetDifficulty()
             elif userInput=="change difficulty":
                 self.flipSetDifficulty(False)
                 self.userSetDifficulty()

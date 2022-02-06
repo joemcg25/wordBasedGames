@@ -61,7 +61,7 @@ class wordleClass:
             return gameOver
         return gameOver
 
-    def runGame(self):
+    def runGameLogic(self):
         while True:
             launchGame=False
             print(f"Please provide start or quit to exit")

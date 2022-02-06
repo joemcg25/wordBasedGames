@@ -38,8 +38,15 @@ class TestBasicHangman(unittest.TestCase):
     def test_addToGuesses3(self):
         self.hangman.handleGuess("a")
         self.hangman.handleGuess("1")
-        print(self.hangman._guesses)
         self.assertTrue(not self.hangman._guesses.__contains__("1"))
+    def test_addToGuesses4(self):
+        self.hangman.handleGuess("a")
+        self.hangman.handleGuess("a")
+        self.assertEqual(["a"],self.hangman._guesses)
+    def test_addToGuesses_wordGuess(self):
+        self.hangman.handleGuess("attempted")
+        self.hangman.handleGuess("a")
+        self.assertEqual(["attempted","a"],self.hangman._guesses)
     def test_guessesReduce(self):
         self.hangman.handleGuess("attempt")
         self.hangman.handleGuess("attempts")
