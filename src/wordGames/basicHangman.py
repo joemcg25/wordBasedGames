@@ -17,6 +17,7 @@ class basicHangman:
 
     ## Methods ##
     def handleGuess(self,input):
+        "Handles the guess logic for words/letters"
         if (input in self._guesses)or(self._noGuesses<1):
             return False
         if readFile.validLetterGuess(input):
