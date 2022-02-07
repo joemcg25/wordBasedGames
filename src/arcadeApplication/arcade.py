@@ -19,7 +19,7 @@ classGameNames = {"hangman":basicHangman.basicHangman,"wordle":wordle.wordleClas
 def arcadeLogic():
     while True:
         print(f"Which game would you like to play today. We have :\n {[i for i in classGameNames.keys()]}")
-        userInput = input().lower().lstrip(" ").rstrip(" ")
+        userInput = input("Please provide input: ").lower().lstrip(" ").rstrip(" ")
         if userInput=="quit":
             print(f"Goodbye")
             break

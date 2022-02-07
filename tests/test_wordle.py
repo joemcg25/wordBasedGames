@@ -33,3 +33,6 @@ class TestWordle(unittest.TestCase):
         self.wordle.makeGuess("hurls")
         res=self.wordle.wordObjects[0]
         self.assertEqual("hurls",res)
+    def test_makeInvalidGuess0(self):
+        res=self.wordle.makeGuess("length")
+        self.assertFalse(res)
