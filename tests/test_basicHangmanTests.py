@@ -71,3 +71,6 @@ class TestBasicHangman(unittest.TestCase):
         self.hangman.handleGuess("b")
         self.hangman.handleGuess("r")
         self.assertEqual("b_tt_r",self.hangman._stateOfGuess)
+    def test_reprTest(self):
+        res=repr(self.hangman)
+        self.assertEqual("basicHangman Class = Current difficulty is easy",res)

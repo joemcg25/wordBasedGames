@@ -117,6 +117,5 @@ class basicHangman:
                 self.flipSetDifficulty(False)
                 self.userSetDifficulty()
         return True
-
-
-
+    def __repr__(self):
+        return f"{type(self).__name__} Class = Current difficulty is {self._difficultyVal}"
